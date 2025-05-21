@@ -3,8 +3,11 @@ package com.new1.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-public class Category {
+public class IngredientCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,4 +18,9 @@ public class Category {
     @JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<IngredientsItem> ingredients = new ArrayList<>();
+
+
 }
